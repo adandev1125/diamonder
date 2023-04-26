@@ -17,8 +17,8 @@ import (
  * @param	Database		The database name used for this app.
  */
 var DBConfig types.DatabaseConfig = types.DatabaseConfig{
-	UseDatabase: true,    //
-	Driver:      "mysql", //
+	UseDatabase: true,
+	Driver:      "mysql",
 	Username:    "root",
 	Password:    "",
 	Host:        "127.0.0.1",
