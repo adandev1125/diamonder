@@ -12,7 +12,9 @@ var router *mux.Router
 var once sync.Once
 
 func GetRouter() *mux.Router {
+
 	once.Do(func() {
+
 		router = mux.NewRouter()
 		initRouter()
 	})
@@ -21,6 +23,8 @@ func GetRouter() *mux.Router {
 }
 
 func initRouter() {
+
+	// Add your routes here.
 
 	router.HandleFunc("/", controllers.WelcomeHandler).Methods("GET")
 

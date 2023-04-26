@@ -9,13 +9,14 @@ import (
 )
 
 type DatabaseConfig struct {
-	Driver    string
-	Username  string
-	Password  string
-	Host      string
-	Port      int
-	Database  string
-	ParseTime bool
+	UseDatabase bool
+	Driver      string
+	Username    string
+	Password    string
+	Host        string
+	Port        int
+	Database    string
+	ParseTime   bool
 }
 
 type Database struct {

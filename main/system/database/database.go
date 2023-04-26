@@ -12,10 +12,15 @@ var once sync.Once
 
 func GetDatabase() *sql.DB {
 	once.Do(func() {
+
 		database = &types.Database{
 			Config: config.DBConfig,
 		}
-		database.Connect()
+
+		if config.DBConfig.UseDatabase {
+			database.Connect()
+		}
+
 	})
 	return database.DB
 }
