@@ -135,7 +135,7 @@ You can use them in views like this:
 ```
 
 ### Templating Views
-Templating views is supported by the github.com/gorilla/mux v1.8.0 library.
+Templating views is supported by the html/template library.
 
 To see more information about this please visit [https://pkg.go.dev/html/template](https://pkg.go.dev/html/template).
 
