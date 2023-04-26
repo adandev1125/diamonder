@@ -2,6 +2,8 @@
 
 Go-MVC is an MVC framework that allows for easy and efficient web development with Go. This framework is designed to be light-weight and modular, making it easy to integrate into any project.
 
+![preview](preview.jpg)
+
 ## Structure
 
 The structure of Go-MVC is organized into the following directories:
