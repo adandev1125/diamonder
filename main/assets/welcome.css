@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Inter";
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap");
+}
+
+body {
+  font-family: "Inter", sans-serif;  
+  color: rgb(100, 100, 100);
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-weight: normal;
+}
