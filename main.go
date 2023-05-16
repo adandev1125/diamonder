@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"main/config"
-
 	"main/routes"
 	"net/http"
 
