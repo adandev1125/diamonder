@@ -34,7 +34,7 @@ git clone https://github.com/adandev1125/go-mvc
 After clone is completed, you can start server with following commands.
 
 ```
-go run main/main.go
+go run main.go
 ```
 
 ## Quick Guide

@@ -2,8 +2,8 @@ package database
 
 import (
 	"database/sql"
-	"main/main/config"
-	"main/main/system/types"
+	"main/config"
+	"main/system/types"
 	"sync"
 )
 

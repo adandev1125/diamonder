@@ -1,7 +1,7 @@
 package config
 
 import (
-	"main/main/system/types"
+	"main/system/types"
 )
 
 /**
