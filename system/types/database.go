@@ -26,6 +26,7 @@ type Database struct {
 
 func (d *Database) Connect() {
 	var err error
+	log.Printf("Connecting database: %#v", d.Config)
 	d.DB, err = sql.Open(
 		d.Config.Driver,
 		fmt.Sprintf(

@@ -4,13 +4,17 @@ import (
 	"fmt"
 	"main/config"
 	"main/routes"
+	"main/system/database"
 	"net/http"
 
 	"github.com/gorilla/handlers"
 )
 
 func main() {
-	fmt.Printf("Server started.\nYou can test on http://localhost:%d", config.PORT)
+	fmt.Printf("Server is starting...\nYou can test on http://localhost:%d\n\n", config.PORT)
+
+	db := database.GetDatabase()
+	defer db.Close()
 
 	router := routes.GetRouter()
 
