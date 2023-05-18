@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	fmt.Printf("Server is starting...\nYou can test on http://localhost:%d\n\n", config.PORT)
+	fmt.Printf("Server is starting...")
 
 	db := database.GetDatabase()
 	defer db.Close()

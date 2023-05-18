@@ -45,4 +45,6 @@ func (d *Database) Connect() {
 	if err != nil {
 		log.Fatal("Database Ping Error:", err)
 	}
+
+	log.Printf("Database Connected.\n\n")
 }

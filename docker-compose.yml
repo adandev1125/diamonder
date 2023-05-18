@@ -1,10 +1,37 @@
 version: '3.4'
 
 services:
-  gomvc:
-    image: gomvc
+  gomvc-db:
+    image: mysql:latest
+    container_name: gomvc-db
+    hostname: db
+    networks:
+      - gomvc-net
+    volumes:
+      - gomvc-test-storage
+    ports:
+      - 3306:3306
+
+  gomvc-server:
+    image: gomvc:latest
+    depends_on:
+      - gomvc-db
     build:
       context: .
       dockerfile: ./Dockerfile
+    container_name: gomvc-server
+    hostname: gomvc-test-server
+    networks:
+      - gomvc-net
     ports:
       - 8080:8080
+    deploy:
+      restart_policy: 
+        condition: on-failure
+
+volumes:
+  gomvc-test-storage:
+
+networks:
+  gomvc-net:
+    driver: bridge
