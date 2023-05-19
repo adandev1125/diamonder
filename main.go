@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	fmt.Printf("Server is starting...")
+	fmt.Printf("Server is starting...\n\n")
 
 	db := database.GetDatabase()
 	defer db.Close()
