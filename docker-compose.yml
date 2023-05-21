@@ -4,16 +4,14 @@ services:
   mysql_db:
     image: mysql:latest
     container_name: mysql_db
-    hostname: db
+    hostname: ${MYSQL_HOST:?mysql host not set}
     networks:
       - test_net
     volumes:
       - gomvc-test-storage:/var/lib/mysql
     ports:
-      - 3306:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-
+      - 3306:${MYSQL_PORT:?mysql port not set}
+    
   http_server:
     image: gomvc:latest
     depends_on:
@@ -30,10 +28,13 @@ services:
     deploy:
       restart_policy: 
         condition: on-failure
+    environment:
+      - MYSQL_HOST=${MYSQL_HOST:?mysql host not set}
+      - MYSQL_PORT=${MYSQL_PORT:?mysql host not set}
 
 volumes:
-  gomvc-test-storage: # TODO fix directory issue
+  gomvc-test-storage:
 
 networks:
-  test_net: # TODO check the network name and fix it
+  test_net:
     driver: bridge
