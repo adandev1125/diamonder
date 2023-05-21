@@ -1,12 +1,10 @@
-# Go-MVC
+# diamonder
 
-Go-MVC is an MVC framework that allows for easy and efficient web development with Go. This framework is designed to be light-weight and modular, making it easy to integrate into any project.
-
-![preview](preview.jpg)
+**diamonder** is a framework that allows for easy and efficient web development with Go. This framework is designed to be light-weight and modular, making it easy to customize and integrate into any project.
 
 ## Structure
 
-The structure of Go-MVC is organized into the following directories:
+The structure of **diamonder** is organized into the following directories:
 
 - assets : Contains all static assets such as images, stylesheets and javascript files.
 - config : Contains configuration files such as database configurations, application settings and more.
@@ -18,17 +16,17 @@ The structure of Go-MVC is organized into the following directories:
 
 ## Third-party dependencies
 
-Go-MVC currently utilizes the following third-party dependencies:
+**diamonder** currently utilizes the following third-party dependencies:
 
 - github.com/go-sql-driver/mysql v1.7.1 : A MySQL driver for Go.
 - github.com/gorilla/mux v1.8.0 : A powerful URL router and dispatcher.
 
 ## Getting Started
 
-To get started with Go-MVC, you first clone the repository.
+To get started with **diamonder**, you first clone the repository.
 
 ```
-git clone https://github.com/adandev1125/go-mvc
+git clone https://github.com/adandev1125/diamonder
 ```
 
 After clone is completed, you can start server with following commands.
@@ -60,7 +58,10 @@ Here is a code snippet for a simple controller.
 ``` go
 func WelcomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("views/welcome.html"))
-	tmpl.Execute(w, nil)
+	tmpl.Execute(w, WelcomePageData{
+		Title:         "Diamond",
+		FirstHtmlFile: "views/welcome.html",
+	})
 }
 ```
 
@@ -73,25 +74,24 @@ To use database for you app, you have to configure for the database.
 You can see the config in [config/database.go](main/config/database.go).
 
 ``` go
-/**
- * A database config for the app.
- *
- * @param	UseDatabase		True if this application use a database, false if not.
- * @param	Driver			Database driver name. If you use other databases like MongoDB,
- *							you must import the driver in system/database/database.go.
- * @param	Username		Username used to connect to the database.
- * @param	Password		Password used to connect to the database.
- * @param	Host			The database host.
- * @param	Port			The port of database server.const.
- * @param	Database		The database name used for this app.
- */
-var DBConfig types.DatabaseConfig = types.DatabaseConfig{
-	UseDatabase: true,    //
-	Driver:      "mysql", //
-	Username:    "root",
-	Password:    "",
-	Host:        "127.0.0.1",
-	Port:        3306,
+/*
+*
+A database config for the app.
+@param	UseDatabase		True if this application use a database, false if not.
+@param	Driver			Database driver name.
+@param	EnvHost			Environment variable name for the database host.
+@param	EnvPort			Environment variable name for the port of database server.
+@param	Username		Username used to connect to the database.
+@param	Password		Password used to connect to the database.
+@param	Database		The database name used for this app.
+*/
+var DBConfig types.DBConfig = types.DBConfig{
+	UseDatabase: true,
+	Driver:      "mysql",
+	EnvHost:     "MYSQL_HOST",
+	EnvPort:     "MYSQL_PORT",
+	Username:    "test_user",
+	Password:    "test_password",
 	Database:    "test",
 	ParseTime:   true,
 }
@@ -149,9 +149,14 @@ var PORT = 3000
 
 ## Conclusion
 
-Go-MVC is a great choice for web development with Go. With its easy-to-use structure and lightweight design, it is a perfect fit for any new or existing project. I hope you find it useful and I look forward to seeing what you create with it!
+diamonder is a great choice for web development with Go. With its easy-to-use structure and lightweight design, it is a perfect fit for any new or existing project. I hope you find it useful and I look forward to seeing what you create with it!
 
 ## Release Notes
 
 ### Version 0.0.1
 Initial Release.
+
+
+### Version 0.0.2
+Added docker files.
+Added github workflows for CI/CD.

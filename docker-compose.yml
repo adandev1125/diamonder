@@ -5,15 +5,17 @@ services:
     image: mysql:latest
     container_name: mysql_db
     hostname: ${MYSQL_HOST:?mysql host not set}
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:?mysql root password not set}
     networks:
       - test_net
     volumes:
-      - gomvc-test-storage:/var/lib/mysql
+      - test_storage:/var/lib/mysql
     ports:
       - 3306:${MYSQL_PORT:?mysql port not set}
     
   http_server:
-    image: gomvc:latest
+    image: diamonder:latest
     depends_on:
       - mysql_db
     build:
@@ -33,7 +35,7 @@ services:
       - MYSQL_PORT=${MYSQL_PORT:?mysql host not set}
 
 volumes:
-  gomvc-test-storage:
+  test_storage:
 
 networks:
   test_net:

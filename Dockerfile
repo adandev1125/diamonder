@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . ./
 RUN go mod download
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /go-mvc
+RUN CGO_ENABLED=0 GOOS=linux go build -o /diamonder
 
 
 # Deploy the application binary into a lean image
@@ -16,7 +16,7 @@ FROM alpine:latest AS build-release-stage
 
 WORKDIR /app
 
-COPY --from=build-stage /go-mvc /go-mvc
+COPY --from=build-stage /diamonder /diamonder
 
 # Because it is multistage, we have to copy html and static files to container 
 RUN mkdir views
@@ -26,4 +26,4 @@ COPY ./assets ./assets
 
 EXPOSE 8080
 
-ENTRYPOINT ["/go-mvc"]
+ENTRYPOINT ["/diamonder"]

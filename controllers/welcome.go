@@ -13,7 +13,7 @@ type WelcomePageData struct {
 func WelcomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("views/welcome.html"))
 	tmpl.Execute(w, WelcomePageData{
-		Title:         "Go MVC",
+		Title:         "diamonder",
 		FirstHtmlFile: "views/welcome.html",
 	})
 }
