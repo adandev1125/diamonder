@@ -1,28 +1,30 @@
 version: '3.4'
 
 services:
-  gomvc-db:
+  mysql_db:
     image: mysql:latest
-    container_name: gomvc-db
+    container_name: mysql_db
     hostname: db
     networks:
-      - gomvc-net
+      - test_net
     volumes:
-      - gomvc-test-storage
+      - gomvc-test-storage:/var/lib/mysql
     ports:
       - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
 
-  gomvc-server:
+  http_server:
     image: gomvc:latest
     depends_on:
-      - gomvc-db
+      - mysql_db
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: gomvc-server
-    hostname: gomvc-test-server
+    container_name: http_server
+    hostname: http-server
     networks:
-      - gomvc-net
+      - test_net
     ports:
       - 8080:8080
     deploy:
@@ -30,8 +32,8 @@ services:
         condition: on-failure
 
 volumes:
-  gomvc-test-storage:
+  gomvc-test-storage: # TODO fix directory issue
 
 networks:
-  gomvc-net:
+  test_net: # TODO check the network name and fix it
     driver: bridge

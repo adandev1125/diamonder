@@ -4,6 +4,8 @@ import (
 	"main/system/types"
 )
 
+// TODO allow multiple databases
+
 /**
  * A database config for the app.
  *
