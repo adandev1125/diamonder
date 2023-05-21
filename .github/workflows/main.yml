@@ -1,4 +1,4 @@
-name: ci
+name: gomvc-ci
 
 on: 
   push: 
@@ -28,4 +28,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/gomvc:latest
