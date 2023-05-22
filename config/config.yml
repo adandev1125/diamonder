@@ -1,0 +1,13 @@
+# Configuration for application "diamonder"
+name: 'diamonder'
+port: 8080
+# Configuration for databases used by the application
+databases:
+  - name: 'test_db'
+    driver: 'mysql'
+    host: 'db'
+    port: 3306
+    database: 'test'
+    username: 'test_user'
+    password: 'test_password'
+    parse_time: true # Setting to parse time is true to automatically convert time values into Go's time.Time format

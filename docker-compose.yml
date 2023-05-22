@@ -4,7 +4,7 @@ services:
   mysql_db:
     image: mysql:latest
     container_name: mysql_db
-    hostname: ${MYSQL_HOST:?mysql host not set}
+    hostname: db
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:?mysql root password not set}
     networks:
@@ -12,7 +12,7 @@ services:
     volumes:
       - test_storage:/var/lib/mysql
     ports:
-      - 3306:${MYSQL_PORT:?mysql port not set}
+      - 3306:3306
     
   http_server:
     image: diamonder:latest
@@ -30,10 +30,7 @@ services:
     deploy:
       restart_policy: 
         condition: on-failure
-    environment:
-      - MYSQL_HOST=${MYSQL_HOST:?mysql host not set}
-      - MYSQL_PORT=${MYSQL_PORT:?mysql host not set}
-
+    
 volumes:
   test_storage:
 

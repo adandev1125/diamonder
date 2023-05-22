@@ -23,6 +23,8 @@ RUN mkdir views
 COPY ./views ./views
 RUN mkdir assets
 COPY ./assets ./assets
+RUN mkdir config
+COPY ./config ./config
 
 EXPOSE 8080
 

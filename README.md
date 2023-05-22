@@ -39,7 +39,7 @@ go run main.go
 
 ### Adding Routes
 
-All routes are defined in [routes/routes.go](main/routes/routes.go). You can also use subdirectories to organize yourself.
+All routes are defined in [routes/routes.go](routes/routes.go). You can also use subdirectories to organize yourself.
 
 To add a route, you must define its path and controller.
 
@@ -65,36 +65,25 @@ func WelcomeHandler(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
-After finishing your controller, you must add it to the [routes](main/routes/routes.go) to see if it's working correctly.
+After finishing your controller, you must add it to the [routes](routes/routes.go) to see if it's working correctly.
 
 ### Configuring Database
 
 To use database for you app, you have to configure for the database.
 
-You can see the config in [config/database.go](main/config/database.go).
+You can see the config in [config/config.yml](config/config.yml).
 
-``` go
-/*
-*
-A database config for the app.
-@param	UseDatabase		True if this application use a database, false if not.
-@param	Driver			Database driver name.
-@param	EnvHost			Environment variable name for the database host.
-@param	EnvPort			Environment variable name for the port of database server.
-@param	Username		Username used to connect to the database.
-@param	Password		Password used to connect to the database.
-@param	Database		The database name used for this app.
-*/
-var DBConfig types.DBConfig = types.DBConfig{
-	UseDatabase: true,
-	Driver:      "mysql",
-	EnvHost:     "MYSQL_HOST",
-	EnvPort:     "MYSQL_PORT",
-	Username:    "test_user",
-	Password:    "test_password",
-	Database:    "test",
-	ParseTime:   true,
-}
+``` yaml
+# Configuration for databases used by the application
+databases:
+  - name: 'test_db'
+    driver: 'mysql'
+    host: 'db'
+    port: 3306
+    database: 'test'
+    username: 'test_user'
+    password: 'test_password'
+    parse_time: true # Setting to parse time is true to automatically convert time values into Go's time.Time format
 ```
 
 ### Using database
@@ -106,7 +95,7 @@ For example:
 ``` go
 ... ... ...
 
-var db = database.GetDatabase()
+var db = system.GetDatabase("test_db") // database name specified in config.yml
 
 rows, error := db.Query("SELECT * FROM test_users")
 
@@ -120,7 +109,7 @@ defer rows.Close()
 ```
 
 ### Using static files
-Static files are stored in [assets](main/assets/) folder.
+Static files are stored in [assets](assets/) folder.
 You can use them in views like this:
 ``` html
 ... ... ...
@@ -140,11 +129,13 @@ Templating views is supported by the html/template library.
 To see more information about this please visit [https://pkg.go.dev/html/template](https://pkg.go.dev/html/template).
 
 ### Configuring Environments
-To use another port, change the port in the [config](main/config/config.go) file.
+To use another port, change the port in the [config](config/config.yml) file.
 
 For example:
-``` go
-var PORT = 3000
+``` yaml
+# Configuration for application "diamonder"
+...
+port: 8080
 ```
 
 ## Conclusion
@@ -152,11 +143,19 @@ var PORT = 3000
 diamonder is a great choice for web development with Go. With its easy-to-use structure and lightweight design, it is a perfect fit for any new or existing project. I hope you find it useful and I look forward to seeing what you create with it!
 
 ## Release Notes
+### Version 0.0.3
+Changed the way of configuration to YAML.
+
+Enabled multiple databases.
+
+
+### Version 0.0.2
+Added docker files.
+
+Added github workflows for CI/CD.
+
 
 ### Version 0.0.1
 Initial Release.
 
 
-### Version 0.0.2
-Added docker files.
-Added github workflows for CI/CD.
